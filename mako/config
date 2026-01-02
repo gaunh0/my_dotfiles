@@ -1,0 +1,33 @@
+# Các cài đặt chung
+text-color=#BBC0CA
+border-color=#161D26
+background-color=#0F1219
+width=300
+height=110
+padding=12
+border-size=1
+border-radius=8
+font=JetBrainsMono Nerd Font 11
+anchor=top-right
+outer-margin=20
+default-timeout=5000
+max-icon-size=36
+
+# === MÀU THEO MỨC ĐỘ ===
+
+# Thông báo thường — dùng cyan cho VIỀN + TIÊU ĐỀ (nếu có)
+[urgency=normal]
+text-color=#65C2CD
+border-color=#65C2CD
+# background-color giữ nguyên (không đổi nền)
+
+# Thông báo thấp (nếu dùng)
+[urgency=low]
+text-color=#a0a8b0
+border-color=#161D26
+
+# Cảnh báo cao — giữ nguyên đỏ
+[urgency=critical]
+text-color=#E06B75
+border-color=#E06B75
+background-color=#1a151a

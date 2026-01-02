@@ -1,0 +1,354 @@
+/* =====================================================
+   Waybar - Kitty Matched Palette (Deep Navy / Clean Pill)
+   ===================================================== */
+
+/* =========================
+   Color palette (from kitty)
+   ========================= */
+
+/* =========================
+      Waybar - Match Kitty Scheme #2 (OneDark Night)
+      ========================= */
+
+@define-color background #0e0e0e;
+@define-color foreground #BBC0CA;
+@define-color foreground-inactive #5c6370;
+
+/* surfaces */
+@define-color background-alt #161D26; /* tab_bar_background / color0 */
+@define-color pill rgba(187,192,202,0.06);
+@define-color pill-hover rgba(187,192,202,0.10);
+@define-color outline rgba(187,192,202,0.14);
+
+/* accents from kitty */
+@define-color red     #E06B75;
+@define-color green   #98C379;
+@define-color yellow  #E5C07A;
+@define-color blue    #60AFEF;
+@define-color magenta #C376DB;
+@define-color cyan    #65C2CD;
+
+/* tab accent (nice highlight) */
+@define-color accent  #52ACB8;
+
+/* semantic */
+@define-color ok   #98C379;
+@define-color info #65C2CD;
+@define-color warn #E5C07A;
+@define-color crit #E06B75;
+@define-color dim  #5c6370;
+
+/* =========================
+   Global
+   ========================= */
+
+* {
+    font-family: "Mononoki Nerd Font";
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    color: @foreground;
+}
+
+/* =========================
+   Bar container
+   ========================= */
+
+#waybar {
+    background: @background;
+    border: 2px solid @background-alt;
+    border-radius: 7px;
+}
+
+/* spacing blocks */
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0 6px;
+}
+
+/* =========================
+   Workspaces
+   ========================= */
+
+#workspaces {
+    margin-left: 6px;
+}
+
+#workspaces button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 4px 10px;
+    margin: 6px 4px;
+    border-radius: 8px;
+    color: @foreground-inactive;
+}
+
+#workspaces button:hover {
+    background: @pill-hover;
+    color: @foreground;
+}
+
+#workspaces button.active {
+    background: rgba(242, 94, 134, 0.18);
+    border: 1px solid rgba(242, 94, 134, 0.55);
+    color: @foreground;
+}
+
+#workspaces button.empty {
+    color: @foreground-inactive;
+    opacity: 0.9;
+}
+
+#workspaces button.urgent {
+    color: @crit;
+    background: rgba(242, 94, 134, 0.12);
+}
+
+/* =========================
+   Window title
+   ========================= */
+
+#window {
+    margin: 6px 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: transparent;
+    color: @foreground;
+    opacity: 0.95;
+}
+
+/* =========================
+   Center clock
+   ========================= */
+
+#clock {
+    margin: 6px 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: transparent;
+    color: @foreground;
+}
+
+/* =========================
+   Pills (Right modules)
+   ========================= */
+
+#tray,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#cpu,
+#memory,
+#idle_inhibitor,
+#temperature,
+#network,
+#battery {
+    margin: 6px 4px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    background: @pill;
+    /*background: transparent;*/
+    border: 1px solid rgba(255, 255, 255, 0);
+    letter-spacing: 0.02em;
+}
+
+#tray:hover,
+#idle_inhibitor:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#battery:hover {
+    background: @pill-hover;
+    border: 1px solid @outline;
+}
+
+/* Tray tweaks */
+#tray {
+    padding-right: 8px;
+}
+#tray > .passive {
+    opacity: 0.8;
+}
+#tray > .needs-attention {
+    background: rgba(242, 192, 99, 0.18);
+    border-radius: 8px;
+}
+
+/* =========================
+   Dynamic accents
+   ========================= */
+
+/* CPU */
+#cpu.warning {
+    color: @warn;
+    border: 1px solid rgba(242, 192, 99, 0.55);
+    background: rgba(242, 192, 99, 0.1);
+}
+#cpu.critical {
+    color: @crit;
+    border: 1px solid rgba(242, 94, 134, 0.6);
+    background: rgba(242, 94, 134, 0.12);
+}
+
+/* Memory */
+#memory.warning {
+    color: @warn;
+}
+#memory.critical {
+    color: @crit;
+}
+
+/* Temperature */
+#temperature.critical {
+    color: @orange;
+    border: 1px solid rgba(242, 139, 102, 0.55);
+    background: rgba(242, 139, 102, 0.12);
+}
+
+/* Network */
+#network {
+    color: @info;
+    border: 1px solid rgba(120, 220, 232, 0.35);
+}
+#network.disconnected {
+    color: @dim;
+    border: 1px solid rgba(85, 92, 101, 0.45);
+    background: rgba(85, 92, 101, 0.1);
+}
+
+/* Battery */
+#battery.charging,
+#battery.plugged {
+    color: @ok;
+    border: 1px solid rgba(178, 217, 119, 0.45);
+    background: rgba(178, 217, 119, 0.1);
+}
+#battery.warning {
+    color: @warn;
+    border: 1px solid rgba(242, 192, 99, 0.55);
+    background: rgba(242, 192, 99, 0.1);
+}
+#battery.critical {
+    color: @crit;
+    border: 1px solid rgba(242, 94, 134, 0.6);
+    background: rgba(242, 94, 134, 0.12);
+}
+
+/* =========================
+   Tooltip
+   ========================= */
+
+tooltip {
+    background: @background;
+    border: 1px solid @background-alt;
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+
+tooltip label {
+    color: @foreground;
+}
+
+/* =========================
+   Final polish
+   ========================= */
+
+label {
+    font-weight: 500;
+}
+
+/* =========================
+   Per-module accents (always-on)
+   Clean: subtle border + gentle text tint
+   ========================= */
+
+/* Tray / Idle */
+#tray {
+    border: 1px solid rgba(85, 92, 101, 0.35);
+}
+#idle_inhibitor {
+    color: @dim;
+    border: 1px solid rgba(85, 92, 101, 0.35);
+}
+
+/* Audio / Backlight */
+#pulseaudio {
+    color: @yellow;
+    border: 1px solid rgba(242, 192, 99, 0.35);
+}
+#backlight {
+    color: @blue;
+    border: 1px solid rgba(120, 220, 232, 0.35);
+}
+
+/* System */
+#cpu {
+    color: @red;
+    border: 1px solid rgba(242, 94, 134, 0.35);
+}
+#memory {
+    color: @magenta;
+    border: 1px solid rgba(171, 160, 242, 0.35);
+}
+#temperature {
+    color: @orange;
+    border: 1px solid rgba(242, 139, 102, 0.35);
+}
+
+/* Network / Battery */
+#network {
+    color: @info; /* same as @blue */
+    border: 1px solid rgba(120, 220, 232, 0.35);
+}
+#battery {
+    color: @ok; /* same as @green */
+    border: 1px solid rgba(178, 217, 119, 0.35);
+}
+
+/* Keep disconnected readable */
+#network.disconnected {
+    color: @dim;
+    border: 1px solid rgba(85, 92, 101, 0.45);
+    background: rgba(85, 92, 101, 0.1);
+}
+
+/* =========================
+   State overrides still win (warning/critical/charging)
+   - Your dynamic rules will override these automatically
+   ========================= */
+/* đang KEEP AWAKE */
+#idle_inhibitor.activated {
+    color: @yellow; /* hoặc @green nếu thích */
+    border: 1px solid rgba(242, 192, 99, 0.45);
+    background: rgba(242, 192, 99, 0.1);
+}
+
+/* idle bình thường */
+#idle_inhibitor.deactivated {
+    color: green;
+    border: 1px solid rgba(85, 92, 101, 0.35);
+}
+
+/* ===== Bluetooth ===== */
+#bluetooth {
+    color: @accent; /* cyan-ish */
+    border: 1px solid rgba(82, 172, 184, 0.4);
+}
+
+/* tắt / không có controller */
+#bluetooth.disabled,
+#bluetooth.off {
+    color: @dim;
+    border: 1px solid rgba(92, 99, 112, 0.45);
+}
+
+/* có thiết bị kết nối */
+#bluetooth.connected {
+    color: @info; /* cyan */
+    border: 1px solid rgba(101, 194, 205, 0.55);
+}

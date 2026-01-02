@@ -1,0 +1,87 @@
+{
+  "output": "eDP-1",
+  "layer": "top",
+  "position": "top",
+  "height": 44,
+  "spacing": 5,
+  "exclusive": true,
+  // "margin-top": 5,
+  // "margin-left": 5,
+  // "margin-right": 5,
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": [],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "backlight",
+    "cpu",
+    "memory",
+    "temperature",
+    "network",
+    "bluetooth",
+    "tray",
+    "battery",
+    "clock",
+  ],
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": " Muted",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰛐", // caffeine / keep awake
+      "deactivated": "󰾪", // sleep / idle allowed
+    },
+    "tooltip": true,
+  },
+  "backlight": {
+    "format": " {percent}%",
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+  },
+
+  "memory": {
+    "format": "󰘚 {percentage}%",
+  },
+
+  "temperature": {
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+  },
+  "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭 DC",
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+
+    "on-click": "~/.config/rofi/wifi.sh",
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "interval": 1,
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8,
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip": true,
+    "tooltip-format": "Bluetooth: {status}\nConnected: {num_connections}",
+    "on-click": "blueman-manager",
+  },
+}

@@ -1,0 +1,113 @@
+# ------------------------------------------------------------
+# Starship – Catppuccin-inspired, đa sắc, đủ thông tin cho dev
+# ------------------------------------------------------------
+
+"$schema" = "https://starship.rs/config-schema.json"
+
+# Dấu nhắc chính: 3 dấu ❯ đa sắc + thư mục + Git ở phải
+format = "[󰣇](bold #e06b75) $directory $character"
+right_format = "$git_state $git_status $git_branch $cmd_duration"
+# Không thêm dòng trống
+add_newline = false
+
+# Thời gian chạy lệnh (hiển thị nếu >2s)
+[cmd_duration]
+format = "[took $duration](bold yellow) "
+min_time = 2000
+show_milliseconds = false
+
+# Ký tự lệnh – 3 dấu ❯ đa sắc
+[character]
+success_symbol = "[❯](bold #a6e3a1)[❯](bold #89b4fa)[❯](bold #fab387)"
+error_symbol = "[❯](bold #f38ba8)[❯](bold #eba0ac)[❯](bold #f38ba8)"
+
+# Thư mục – rút gọn home, bỏ prefix khi trong repo
+[directory]
+format = "[$path]($style)"
+style = "#f5c2e7"
+truncation_length = 3
+truncate_to_repo = true
+home_symbol = "~"
+
+# Git branch – chỉ hiện khi có Git
+[git_branch]
+format = "[](bold #cba6f7) [$branch]($style)"
+style = "#f5c2e7"
+truncation_length = 24
+truncation_symbol = "…"
+only_attached = true
+
+# Git trạng thái – modified, staged, conflict…
+[git_status]
+format = '([$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind]($style))'
+style = "#f38ba8"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Git state – rebase, merge, cherry-pick…
+[git_state]
+format = "[[$state($progress_current/$progress_total)]]($style) "
+style = "#f9e2af"
+
+# Node.js – hiện khi có package.json, .nvmrc…
+[nodejs]
+format = "[$symbol($version)]($style) "
+style = "#a6e3a1"
+symbol = " "
+
+# Python – hiện khi có .py, requirements.txt, venv…
+[python]
+format = "[$symbol($version)]($style) "
+style = "#f5c2e7"
+symbol = " "
+
+# Rust – hiện khi có Cargo.toml
+[rust]
+format = "[$symbol($version)]($style) "
+style = "#fab387"
+symbol = " "
+
+# Docker – hiện khi có Dockerfile hoặc docker-compose
+[docker_context]
+format = "[$symbol$context]($style) "
+style = "#89b4fa"
+symbol = " "
+
+#Thời gian – bật nếu cần debug
+[time]
+format = "[$time]($style) "
+style = "#f5c2e7"
+disabled = true
+
+# Ẩn những module ít dùng
+# Ẩn những module ít dùng
+[package]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[php]
+disabled = true
+
+[ruby]
+disabled = true
+
+[swift]
+disabled = true

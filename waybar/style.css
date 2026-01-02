@@ -1,0 +1,291 @@
+/* =====================================================
+   Waybar – Đồng bộ tuyệt đối với Kitty config của bạn
+   Nền: #0F1219 | Tab bar: #161D26 | Active: #52ACB8
+   ===================================================== */
+
+/* =========================
+   Colors – Trích xuất từ Kitty
+   ========================= */
+
+@define-color background         #0F1219;
+@define-color background-alt    #161D26;
+@define-color surface           #1D2632;
+@define-color foreground        #BBC0CA;
+@define-color foreground-dim    #5c6370;
+
+@define-color accent            #52ACB8;
+
+@define-color pill              rgba(187, 192, 202, 0.06);
+@define-color pill-hover        rgba(187, 192, 202, 0.12);
+@define-color outline           rgba(187, 192, 202, 0.18);
+
+/* Accents từ Kitty */
+@define-color red     #E06B75;
+@define-color green   #98C379;
+@define-color yellow  #E5C07A;
+@define-color blue    #60AFEF;
+@define-color magenta #C376DB;
+@define-color cyan    #65C2CD;
+
+@define-color ok   @green;
+@define-color info @cyan;
+@define-color warn @yellow;
+@define-color crit @red;
+@define-color dim  @foreground-dim;
+
+/* =========================
+   Global
+   ========================= */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    color: @foreground;
+}
+
+#waybar {
+    background: @background;
+    /*border: 1px solid @background-alt;
+    border-radius: 12px;*/
+    margin: 6px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0 6px;
+}
+
+/* =========================
+   Workspaces – active = accent teal (#52ACB8)
+   ========================= */
+
+#workspaces {
+    margin-left: 6px;
+}
+
+#workspaces button {
+    background: transparent;
+    border: none;
+    padding: 4px 10px;
+    margin: 6px 4px;
+    border-radius: 8px;
+    color: @foreground-dim;
+}
+
+#workspaces button:hover {
+    background: @pill-hover;
+    color: @foreground;
+}
+
+#workspaces button.active {
+    background: rgba(82, 172, 184, 0.8); /* #52ACB8 @ 80% opacity */
+    color: #282828;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+#workspaces button.empty {
+    color: @foreground-dim;
+    opacity: 0.9;
+}
+
+#workspaces button.urgent {
+    color: @crit;
+    background: rgba(224, 107, 117, 0.12);
+}
+
+/* =========================
+   Window title
+   ========================= */
+
+#window {
+    margin: 6px 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: @foreground;
+    opacity: 0.85;
+}
+
+/* =========================
+   Clock
+   ========================= */
+
+#clock {
+    margin: 6px 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    color: @foreground;
+    font-weight: 800;
+}
+
+/* =========================
+   Right Modules – Clean Pills
+   ========================= */
+#bluetooth,
+#idle_inhibitor {
+    margin: 5px 5px;
+    padding: 5px 9px;
+    /*border-radius: 12px;
+    background: @pill;
+    border: 1px solid transparent;*/
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    font-size: 17px;
+}
+
+#tray,
+#pulseaudio,
+#backlight,
+#cpu,
+#memory,
+#temperature,
+#network,
+#battery {
+    margin: 5px 5px;
+    padding: 5px 9px;
+    /*border-radius: 12px;
+    background: @pill;
+    border: 1px solid transparent;*/
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+#tray:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#cpu:hover,
+#memory:hover,
+#idle_inhibitor:hover,
+#temperature:hover,
+#network:hover,
+#battery:hover {
+    background: @pill-hover;
+    border-color: @outline;
+}
+
+/* =========================
+   Base module colors (from Kitty palette)
+   ========================= */
+/* =========================
+      Module colors – đa dạng hóa theo palette Kitty
+      ========================= */
+
+#cpu {
+    color: @red;
+    border-color: rgba(224, 107, 117, 0.35);
+} /* red */
+#memory {
+    color: @magenta;
+    border-color: rgba(195, 118, 219, 0.35);
+} /* magenta */
+#temperature {
+    color: @yellow;
+    border-color: rgba(229, 192, 122, 0.35);
+} /* yellow */
+#backlight {
+    color: @cyan;
+    border-color: rgba(101, 194, 205, 0.35);
+} /* cyan */
+#pulseaudio {
+    color: @blue;
+    border-color: rgba(96, 175, 239, 0.35);
+} /* blue */
+#network {
+    color: @green;
+    border-color: rgba(152, 195, 121, 0.35);
+} /* green */
+#battery {
+    color: @green;
+    border-color: rgba(152, 195, 121, 0.35);
+} /* green (base) */
+#bluetooth {
+    color: @accent;
+    border-color: rgba(82, 172, 184, 0.4);
+} /* teal accent */
+#idle_inhibitor {
+    color: @magenta;
+    border-color: rgba(195, 118, 219, 0.35);
+} /* magenta – khác biệt */
+#tray {
+    color: @dim;
+    border-color: rgba(92, 99, 112, 0.35);
+}
+
+/* =========================
+   Dynamic states
+   ========================= */
+
+#cpu.warning,
+#memory.warning,
+#battery.warning {
+    color: @warn;
+    border-color: rgba(229, 192, 122, 0.55);
+    background: rgba(229, 192, 122, 0.1);
+}
+
+#cpu.critical,
+#memory.critical,
+#battery.critical,
+#temperature.critical {
+    color: @crit;
+    border-color: rgba(224, 107, 117, 0.6);
+    background: rgba(224, 107, 117, 0.12);
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @ok;
+    border-color: rgba(152, 195, 121, 0.45);
+    background: rgba(152, 195, 121, 0.1);
+    border-radius: 8px;
+}
+
+#network.disconnected {
+    color: @dim;
+    border-color: rgba(92, 99, 112, 0.45);
+    background: rgba(92, 99, 112, 0.08);
+}
+
+#idle_inhibitor.activated {
+    color: @yellow;
+    border-color: rgba(229, 192, 122, 0.45);
+    background: rgba(229, 192, 122, 0.1);
+}
+
+#bluetooth.connected {
+    color: @cyan;
+    border-color: rgba(101, 194, 205, 0.55);
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: @dim;
+    opacity: 0.75;
+}
+
+/* =========================
+   Tooltip
+   ========================= */
+
+tooltip {
+    background: @background-alt;
+    border: 1px solid @surface;
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+
+tooltip label {
+    color: @foreground;
+}
+
+/* =========================
+   Typography
+   ========================= */
+
+label {
+    font-weight: 400;
+}
