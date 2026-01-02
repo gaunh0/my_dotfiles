@@ -19,6 +19,16 @@ abbr f fd # f = fd
 abbr g rg # g = ripgrep
 
 alias cd z
+# Git Abbreviations
+abbr gs git status
+abbr ga git add
+abbr gc git commit -m
+abbr gp git push
+abbr gpl git pull
+abbr gco git checkout
+abbr gb git branch
+abbr glog git log --oneline --graph --all
+abbr gcl git clone
 
 function mdc
     pandoc $argv \
