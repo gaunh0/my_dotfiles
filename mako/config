@@ -1,5 +1,5 @@
 # Các cài đặt chung
-text-color=#BBC0CA
+text-color=#abb2bf
 border-color=#161D26
 background-color=#0F1219
 width=300
@@ -7,7 +7,7 @@ height=110
 padding=12
 border-size=1
 border-radius=8
-font=JetBrainsMono Nerd Font 11
+font=JetBrainsMono Nerd Font 13
 anchor=top-right
 outer-margin=20
 default-timeout=5000
