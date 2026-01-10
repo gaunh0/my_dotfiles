@@ -23,22 +23,22 @@
     text-color:       @fg0;
 
     margin:   0;
-    padding:  5px;
+    padding:  2px;
     spacing:  0;
 }
 
 window {
     location: center;
-    width:    520;
+    width:    500;
     background-color: @bg0;
 }
 
 inputbar {
-    spacing: 8px;
-    padding: 8px;
+    spacing: 3px;
+    padding: 3px;
     background-color: @bg1;
     border-radius: 8px;
-    margin: 8px;
+    margin: 3px;
 }
 
 prompt, entry, element-icon, element-text {
@@ -50,14 +50,14 @@ prompt {
 }
 
 textbox {
-    padding: 8px;
+    padding: 4px;
     background-color: @bg1;
     border-radius: 6px;
 }
 
 listview {
-    padding: 4px 0;
-    lines: 8;
+    padding: 3px 0;
+    lines: 5;
     columns: 1;
     fixed-height: false;
 }
