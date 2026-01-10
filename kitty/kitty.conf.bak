@@ -24,10 +24,10 @@ cursor_blink true
 
 # Fancy Shit
 
-background_opacity 0.8
+background_opacity 0.9
 
 
 # BEGIN_KITTY_THEME
-# Noctalia
+# Kanagawa_dragon
 include onedark.conf
 # END_KITTY_THEME

@@ -6,8 +6,7 @@
 
 # Dấu nhắc chính: 3 dấu ❯ đa sắc + thư mục + Git ở phải
 format = "[󰣇](bold #e06b75) $directory $character"
-right_format = "$git_state $git_status $git_branch"
-
+right_format = "$git_state $git_status $git_branch $cmd_duration"
 # Không thêm dòng trống
 add_newline = false
 
@@ -81,11 +80,11 @@ format = "[$symbol$context]($style) "
 style = "#89b4fa"
 symbol = " "
 
-# Thời gian – bật nếu cần debug
-# [time]
-# format = "[$time]($style) "
-# style = "#f5c2e7"
-# disabled = true
+#Thời gian – bật nếu cần debug
+[time]
+format = "[$time]($style) "
+style = "#f5c2e7"
+disabled = true
 
 # Ẩn những module ít dùng
 # Ẩn những module ít dùng

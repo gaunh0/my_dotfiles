@@ -8,7 +8,7 @@
   // "margin-top": 5,
   // "margin-left": 5,
   // "margin-right": 5,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": [],
   "modules-right": [
     "idle_inhibitor",
