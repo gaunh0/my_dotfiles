@@ -1,87 +1,106 @@
 {
-  "output": "eDP-1",
-  "layer": "top",
-  "position": "top",
-  "height": 44,
-  "spacing": 5,
-  "exclusive": true,
-  // "margin-top": 5,
-  // "margin-left": 5,
-  // "margin-right": 5,
-  "modules-left": ["niri/workspaces", "niri/window"],
-  "modules-center": [],
+  "modules-left": ["custom/power", "niri/workspaces"],
+  "modules-center": ["clock"],
+  // "modules_center": ["custom/sysmon"],
   "modules-right": [
-    "idle_inhibitor",
-    "pulseaudio",
-    "backlight",
-    "cpu",
-    "memory",
-    "temperature",
+    "custom/nvim-cheat",
+    "tray",
     "network",
     "bluetooth",
-    "tray",
     "battery",
-    "clock",
+    "backlight",
+    "pulseaudio",
+    "custom/sysmon",
   ],
-  "pulseaudio": {
-    "format": " {volume}%",
-    "format-muted": " Muted",
+
+  "niri/workspaces": {
+    "all-outputs": true,
+    "cursor": true,
   },
-  "idle_inhibitor": {
+  "bluetooth": {
     "format": "{icon}",
-    "format-icons": {
-      "activated": "󰛐", // caffeine / keep awake
-      "deactivated": "󰾪", // sleep / idle allowed
-    },
+    "format-disabled": "󰂲",
+    "format-on": "󰂯",
+    "format-connected": "󰂱",
     "tooltip": true,
-  },
-  "backlight": {
-    "format": " {percent}%",
-  },
-
-  "cpu": {
-    "format": " {usage}%",
-  },
-
-  "memory": {
-    "format": "󰘚 {percentage}%",
-  },
-
-  "temperature": {
-    "format": " {temperatureC}°C",
-    "format-critical": " {temperatureC}°C",
+    "on-click": "blueman-manager",
   },
   "network": {
-    "format-wifi": "󰤨",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰤭 DC",
-    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 Ethernet",
+    "format-linked": "󰖪 Linked",
+    "format-disconnected": "󰤭 Disconnected",
     "on-click": "~/.config/rofi/wifi.sh",
   },
 
   "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 20,
+    },
     "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰂄 {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-full": "{icon}{capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-alt": "{icon}{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}",
+    "interval": 30,
+    "on-click": false,
   },
-  "clock": {
-    "format": "{:%H:%M}",
-    "interval": 1,
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""],
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " {volume}%",
+    "format-bluetooth": "󰂯 {volume}%",
+    "format-bluetooth-muted": " {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": [" "],
+    },
   },
   "tray": {
-    "icon-size": 18,
-    "spacing": 8,
+    "icon-size": 15.9,
+    "spacing": 6,
+    "cursor": true,
   },
-
-  "bluetooth": {
-    "format": "󰂯",
-    "format-disabled": "󰂲",
-    "format-connected": "󰂱 {num_connections}",
+  "custom/power": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "rofi -show powermenu",
+  },
+  "clock": {
+    "format": "{:%a %d/%m/%Y ~ %H:%M}",
+    "tooltip-format": "<span size='11000' font-family='Awaita Mono' line_height='1'><tt>{calendar}</tt></span>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months": "<span color='#777777'>{}</span>",
+        "weekdays": "<span color='#999999'>{}</span>",
+        "days": "<span color='#555555'>{}</span>",
+        "today": "<span color='#FFFFFF'>{}</span>",
+      },
+    },
+  },
+  "custom/sysmon": {
+    "exec": "/home/gaunh0/.config/waybar/scripts/sysmon.py",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{text}",
+  },
+  "custom/nvim-cheat": {
+    "exec": "~/.config/waybar/scripts/nvim-cheat.py",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "~/.config/waybar/scripts/nvim-cheat.py next && pkill -RTMIN+8 waybar",
+    "on-click-right": "~/.config/waybar/scripts/nvim-cheat.py prev && pkill -RTMIN+8 waybar",
+    "on-click-middle": "~/.config/waybar/scripts/nvim-cheat.py reset && pkill -RTMIN+8 waybar",
     "tooltip": true,
-    "tooltip-format": "Bluetooth: {status}\nConnected: {num_connections}",
-    "on-click": "blueman-manager",
   },
 }

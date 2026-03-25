@@ -34,9 +34,11 @@ input {
     touchpad {
         tap
         natural-scroll
+        accel-profile "adaptive"
     }
 
     mouse {
+        accel-profile "flat"
     }
 
     trackpoint {
@@ -45,9 +47,17 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
+cursor {
+    xcursor-theme "Bibata-Modern-Classic"
+    xcursor-size 24
+
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
 layout {
     // Niri config here
-    gaps 10
+    gaps 5
 
     // Set gaps around windows in logical pixels.
     background-color "transparent"
@@ -73,16 +83,23 @@ layout {
     default-column-width { proportion 0.5; }
 
     border {
+        off
         width 1.5
-        active-color   "#42a5f5"
-        inactive-color "#8c9199"
-        urgent-color   "#f2b8b5"
+         active-color   "#42a5f5"
+        // active-gradient from="#89b4faee" to="#F5c2e7ee" angle=25
+         inactive-color "#8c9199"
+        // urgent-color   "#f2b8b5"
+       // inactive-gradient from="#c6c6c6ee" to="#8a8a8aee" angle=45 relative-to="workspace-view"
     }
     focus-ring {
-        width 1.5
-        active-color   "#42a5f5"
-        inactive-color "#8c9199"
-        urgent-color   "#f2b8b5"
+       off
+        width 1.1
+        // active-color   "#42a5f5"
+        // inactive-color "#8c9199"
+        // urgent-color   "#f2b8b5"
+        active-gradient from="#89b4faee" to="#F5c2e7ee" angle=25
+        inactive-gradient from="#c6c6c6ee" to="#8a8a8aee" angle=45 relative-to="workspace-view"
+
     }
     shadow {
         softness 30
@@ -102,17 +119,9 @@ layout {
         color "#42a5f580"
     }
 }
-layer-rule {
-    match namespace="^quickshell$"
-    place-within-backdrop true
-}
-layer-rule {
-    match namespace="dms:blurwallpaper"
-    place-within-backdrop true
-}
 overview {
     workspace-shadow {
-        off
+
     }
 }
 // Add lines like this to spawn processes at startup.
@@ -122,7 +131,10 @@ overview {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "fcitx5" "-d"
-spawn-at-startup "dms" "run"
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-sh-at-startup "~/.config/niri/wallpaper.sh"
+spawn-sh-at-startup "~/.config/niri/swayidle.sh"
 
 environment {
   XDG_CURRENT_DESKTOP "niri"
@@ -142,6 +154,7 @@ hotkey-overlay {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
+
     workspace-switch {
         spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
     }
@@ -245,8 +258,11 @@ recent-windows {
     highlight {
         active-color   "#0d47a1"
         urgent-color   "#f2b8b5"
+        corner-radius 12
+
     }
 }
+
 window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
@@ -254,9 +270,133 @@ window-rule {
     draw-border-with-background false
 }
 
+binds {
+    // === System & Overview ===
+    // Mod+D repeat=false { toggle-overview; }
+    Mod+Tab repeat=false { toggle-overview; }
+    Mod+Ctrl+Delete {
+       spawn "rofi" "-show" "powermenu";
+    }
 
-// Include dms files
-// include "dms/colors.kdl"
-// include "dms/layout.kdl"
-include "dms/alttab.kdl"
-include "dms/binds.kdl"
+    // === Application Launchers ===
+    Mod+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
+    Mod+Space hotkey-overlay-title="Application Launcher" {
+        spawn "rofi" "-show" "drun";
+    }
+    Mod+V hotkey-overlay-title="Clipboard Manager" {
+        spawn-sh "~/.config/rofi/rofi-clipboard.sh  ";
+    }
+
+    // === Security ===
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" {
+        spawn "swaylock";
+    }
+
+    Mod+E {spawn "nautilus";}
+    Ctrl+Alt+Delete { quit; }
+
+    // === Audio Controls ===
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+
+    // === Window Management ===
+    Mod+Q repeat=false { close-window; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+T { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    // === Focus Navigation ===
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+
+    // === Window Movement ===
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+
+    // === Column Navigation ===
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+
+    // === Workspace Navigation ===
+    Mod+Page_Down      { focus-workspace-down; }
+    Mod+Page_Up        { focus-workspace-up; }
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
+
+    // === Move Workspaces ===
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Shift+U         { move-workspace-down; }
+    Mod+Shift+I         { move-workspace-up; }
+
+    // === Mouse Wheel Navigation ===
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-right;}
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-column-left; }
+
+    // === Numbered Workspaces ===
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    // === Move to Numbered Workspaces ===
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // === Column Management ===
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Period { expel-window-from-column; }
+
+    // === Sizing & Layout ===
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // === Manual Sizing ===
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // === Screenshots ===
+    XF86Launch1 { screenshot; }
+    Ctrl+XF86Launch1 { screenshot-screen; }
+    Alt+XF86Launch1 { screenshot-window; }
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+    // === System Controls ===
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+P { power-off-monitors; }
+}

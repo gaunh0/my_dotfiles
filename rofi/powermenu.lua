@@ -21,12 +21,12 @@ local options = {
     {
         name = "Lock",
         icon = "system-lock-screen",
-        command = "hyprlock >/dev/null 2>&1 & disown"
+        command = "swaylock"
     },
     {
         name = "Log out",
         icon = "system-log-out",
-        command = "hyprctl dispatch exit"
+        command = "niri msg action quit"
     }
 }
 

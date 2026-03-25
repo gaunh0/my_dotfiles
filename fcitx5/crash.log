@@ -1,0 +1,6 @@
+=========================
+Fcitx 5.1.7 -- Get Signal No.: 11
+Date: try "date -d @1765599501" if you are using GNU date ***
+ProcessID: 5713
+/home/th/.local/bin/fcitx5(+0x17035)[0x577f91d91035]
+/home/th/.local/lib/fcitx5/libvmk.so(+0xbe780)[0x7f1b6e0be780]

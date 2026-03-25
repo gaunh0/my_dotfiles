@@ -1,10 +1,6 @@
 [Hotkey]
 # Enumerate when holding modifier of Toggle key
 EnumerateWithTriggerKeys=True
-# Activate Input Method
-ActivateKeys=
-# Deactivate Input Method
-DeactivateKeys=
 # Enumerate Input Method Forward
 EnumerateForwardKeys=
 # Enumerate Input Method Backward
@@ -15,10 +11,18 @@ EnumerateSkipFirst=False
 ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
-0=Control+Shift+Shift_L
+0=Control+space
+1=Zenkaku_Hankaku
+2=Hangul
+
+[Hotkey/ActivateKeys]
+0=Hangul_Hanja
+
+[Hotkey/DeactivateKeys]
+0=Hangul_Romaja
 
 [Hotkey/AltTriggerKeys]
-0=Control+Shift+Control_L
+0=Shift_L
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
@@ -47,7 +51,7 @@ ActiveByDefault=False
 # Reset state on Focus In
 resetStateWhenFocusIn=No
 # Share Input State
-ShareInputState=No
+ShareInputState=All
 # Show preedit in application
 PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method
@@ -59,7 +63,7 @@ CompactInputMethodInformation=True
 # Show first input method information
 ShowFirstInputMethodInformation=True
 # Default page size
-DefaultPageSize=5
+DefaultPageSize=1
 # Override XKB Option
 OverrideXkbOption=False
 # Custom XKB Option

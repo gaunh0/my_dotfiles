@@ -1,0 +1,30 @@
+# Set the background image
+image=/home/gaunh0/.config/background/0101.png
+
+# Set the background color (rrggbb[aa] format)
+# If using an image, this color will be used if the image can't be found
+color=000000
+
+# Set the indicator radius and thickness
+indicator-radius=80
+indicator-thickness=10
+
+# Colors for the indicator
+inside-color=000000aa          # Inside color (with transparency)
+inside-clear-color=000000aa    # Inside color when cleared
+inside-ver-color=000000aa      # Inside color when verifying
+inside-wrong-color=000000aa    # Inside color when invalid
+ring-color=ffffffaa            # Ring color when typing/idle
+ring-clear-color=ffa066aa      # Ring color when cleared
+ring-ver-color=98bb6caa        # Ring color when verifying
+ring-wrong-color=f7768eaa      # Ring color when invalid
+line-color=00000000            # Line color (fully transparent to hide)
+
+# Text options
+text-color=dcd7ba              # Text color
+font=FiraCode Nerd Font Propo  # Set a custom font
+font-size=20                   # Set a fixed font size
+
+# Behavior options
+ignore-empty-password          # Do not validate empty passwords
+show-failed-attempts           # Show the number of failed login attempts

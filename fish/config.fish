@@ -7,6 +7,9 @@ set -x GTK_IM_MODULE fcitx
 set -x QT_IM_MODULE fcitx
 set -x XMODIFIERS "@im=fcitx"
 
+set -x XCURSOR_THEME "Bibata-Modern-Classic"
+set -x XCURSOR_SIZE 24
+
 abbr cat bat
 alias ls 'eza --git --icons'
 alias ll 'ls -l --binary'

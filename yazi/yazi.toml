@@ -1,0 +1,5 @@
+
+[mgr]
+show_hidden    = true
+title_format   = "Yazi: {cwd}"
+

@@ -1,0 +1,102 @@
+{
+  "modules-left": ["custom/power", "niri/workspaces"],
+  "modules-center": ["clock"],
+  // "modules_center": ["custom/sysmon"],
+  "modules-right": [
+    "tray",
+    "network",
+    "bluetooth",
+    "battery",
+    "backlight",
+    "pulseaudio",
+    "custom/sysmon",
+  ],
+  "niri/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "active": "󰮯",
+      "default": "●",
+    },
+    "cursor": true,
+  },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-disabled": "󰂲",
+    "format-on": "󰂯",
+    "format-connected": "󰂱",
+    "tooltip": true,
+    "on-click": "blueman-manager",
+  },
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 Ethernet",
+    "format-linked": "󰖪 Linked",
+    "format-disconnected": "󰤭 Disconnected",
+    "on-click": "~/.config/rofi/wifi.sh",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 20,
+    },
+    "format": "{icon} {capacity}%",
+    "format-full": "{icon}{capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-alt": "{icon}{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}",
+    "interval": 30,
+    "on-click":false,
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""],
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " {volume}%",
+    "format-bluetooth": "󰂯 {volume}%",
+    "format-bluetooth-muted": " {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": [" "],
+    },
+  },
+  "tray": {
+    "icon-size": 15.9,
+    "spacing": 6,
+    "cursor": true,
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "rofi -show powermenu",
+  },
+  "clock": {
+    "format": "{:%a %d/%m/%Y ~ %H:%M}",
+    "tooltip-format": "<span size='11000' font-family='Awaita Mono' line_height='1'><tt>{calendar}</tt></span>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months": "<span color='#777777'>{}</span>",
+        "weekdays": "<span color='#999999'>{}</span>",
+        "days": "<span color='#555555'>{}</span>",
+        "today": "<span color='#FFFFFF'>{}</span>",
+      },
+    },
+  },
+  "custom/sysmon": {
+    "exec": "/home/gaunh0/.config/waybar/sysmon.py",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{text}",
+    "markup": "pango",
+  },
+}
