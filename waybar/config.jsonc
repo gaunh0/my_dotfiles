@@ -38,7 +38,7 @@
       "warning": 30,
       "critical": 20,
     },
-    "format": "{icon} {capacity}%",
+    "format": "{icon}   {capacity}%",
     "format-full": "{icon}{capacity}%",
     "format-plugged": " {capacity}%",
     "format-charging": " {capacity}%",

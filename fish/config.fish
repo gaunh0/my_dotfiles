@@ -7,7 +7,7 @@ set -x GTK_IM_MODULE fcitx
 set -x QT_IM_MODULE fcitx
 set -x XMODIFIERS "@im=fcitx"
 
-set -x XCURSOR_THEME "Bibata-Modern-Classic"
+set -x XCURSOR_THEME Bibata-Modern-Classic
 set -x XCURSOR_SIZE 24
 
 abbr cat bat
@@ -60,6 +60,9 @@ function forward_or_edit
     end
 end
 
+if status is-interactive
+    atuin init fish | source
+end
 # Insert mode keys
 set fish_cursor_default block
 set fish_cursor_insert line
