@@ -31,16 +31,58 @@ return {
   },
 
   -- theme
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("onedark").setup { style = "dark" }
+  --     require("onedark").load()
+  --   end,
+  -- },
+  --
   {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("onedark").setup { style = "dark" }
-      require("onedark").load()
+      require("onedark").setup({
+        style = "darker",
+        transparent = true, -- 🔥 transparent
+        term_colors = true,
+
+        diagnostics = {
+          darker = true,
+          undercurl = true,
+          background = true,
+        },
+      })
+      vim.cmd.colorscheme "onedark"
+
+      -- Optional: make common UI backgrounds transparent too
+      local groups = {
+        "Normal",
+        "NormalNC",
+        "SignColumn",
+        "FoldColumn",
+        "LineNr",
+        "CursorLineNr",
+        "EndOfBuffer",
+        "NormalFloat",
+        "FloatBorder",
+        "Pmenu",
+        "PmenuSbar",
+        "PmenuThumb",
+        "TelescopeNormal",
+        "TelescopeBorder",
+        "NeoTreeNormal",
+        "NeoTreeNormalNC",
+      }
+      for _, g in ipairs(groups) do
+        vim.api.nvim_set_hl(0, g, { bg = "none" })
+      end
     end,
   },
-
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
@@ -233,5 +275,50 @@ return {
       end,
       float_opts = { border = "curved" },
     },
+  },
+
+  -- image preview
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    opts = {
+      backend = "kitty",
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          floating_windows = false,
+          filetypes = { "markdown", "vimwiki" },
+        },
+        neorg = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          floating_windows = false,
+          filetypes = { "norg" },
+        },
+      },
+      max_width = 100,
+      max_width_percent = 0.5,
+      max_height = 12,
+      max_height_percent = 0.4,
+      window_overlap_clear_enabled = true,
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+      editor_only_render_when_focused = true,
+      tmux_show_only_in_active_window = true,
+      hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" },
+    },
+  },
+
+  -- telescope media files (image preview in telescope)
+  {
+    "dharmx/telescope-media-files.nvim",
+    dependencies = { "3rd/image.nvim" },
+    config = function()
+      require("telescope").load_extension "media_files"
+    end,
   },
 }
