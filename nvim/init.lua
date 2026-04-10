@@ -1,48 +1,22 @@
--- =========================
--- Neovim 0.12 Minimal Config
--- Organized & Clean
--- =========================
-
 vim.g.mapleader = " "
 
--- Set tabline FIRST (before loading plugins)
-vim.opt.showtabline = 2 -- Always show tabline
-vim.opt.tabline = '%!v:lua.require("core.tabline").setup()'
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
--- Load all modules
-require("core.options")
-require("core.keymaps")
-require("core.autocmds")
-require("plugins.setup")
-
--- Load plugins from vim.pack
-local plugins = {
-  "nvim-treesitter",
-  "telescope.nvim",
-  "nvim-lspconfig",
-  "nvim-cmp",
-  "cmp-nvim-lsp",
-  "conform.nvim",
-  "mason.nvim",
-  "mason-lspconfig.nvim",
-  "plenary.nvim",
-  "LuaSnip",
-  "friendly-snippets",
-}
-
-for _, plugin in ipairs(plugins) do
-  local plugin_path = vim.fn.expand("~/.local/share/nvim/site/pack/nvim/start/" .. plugin)
-  if vim.fn.isdirectory(plugin_path) == 1 then
-    vim.cmd("packadd " .. plugin)
-  end
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
--- Update tabline (ensure it's set)
-vim.opt.tabline = '%!v:lua.require("core.tabline").setup()'
+vim.opt.rtp:prepend(lazypath)
 
--- THEME
+require("lazy").setup({
+  { import = "plugins" },
+}, require "configs.lazy")
 
-vim.cmd("packadd tokyonight.nvim")
-vim.cmd("colorscheme tokyonight")
+require "options"
+require "autocmds"
 
-print("✅ Neovim loaded!")
+vim.schedule(function()
+  require "mappings"
+end)
