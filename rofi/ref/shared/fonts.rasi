@@ -1,0 +1,14 @@
+// launchers/type-3/shared/fonts.rasi
+
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Fonts
+ *
+ **/
+
+* {
+    font: "JetBrainsMonoNL Nerd Font Mono 12";
+}
