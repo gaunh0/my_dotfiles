@@ -1,0 +1,1 @@
+-- Telescope removed: replaced by snacks.picker (lua/plugins/snacks.lua)

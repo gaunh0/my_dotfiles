@@ -1,0 +1,1 @@
+-- nvim-tree removed: replaced by snacks.explorer (lua/plugins/snacks.lua)

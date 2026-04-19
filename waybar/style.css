@@ -18,8 +18,6 @@
 /* ── Workspaces ── */
 #workspaces {
     margin: 2px;
-    padding: 0 4px;
-    border-radius: 1rem;
     background: none;
 }
 
@@ -46,11 +44,13 @@
 
 /* ── Tray ── */
 #tray {
-    margin: 2px 0;
+    margin: 2px 2px;
+    background: @surface_container_highest;
+    border-radius: 6px;
 }
 
 #tray > widget {
-    border-radius: 1rem;
+    border-radius: 6px;
 }
 
 #tray > widget > image {
@@ -58,7 +58,7 @@
 }
 
 #tray > widget:hover {
-    background: @surface_container_highest;
+    background: @outline_variant;
 }
 
 /* ── Shared module style ── */
@@ -74,9 +74,10 @@
     font-weight: bold;
     font-size: 14px;
     padding: 0 10px;
-    margin: 2px 0;
-    border-radius: 1rem;
-    letter-spacing: 0.1em; /* thêm dòng này */
+    margin: 2px 2px;
+    border-radius: 6px;
+    letter-spacing: 0.1em;
+    background: @surface_container_highest;
 }
 
 #clock:hover,
@@ -85,9 +86,8 @@
 #battery:hover,
 #backlight:hover,
 #pulseaudio:hover,
-#custom-power:hover,
 #custom-sysmon:hover {
-    background: @surface_container_highest;
+    background: @outline_variant;
 }
 
 /* ── Network & Pulseaudio — icon-heavy, needs more room ── */
@@ -95,6 +95,20 @@
 #pulseaudio {
     padding: 0 1rem 0 0.6rem;
     font-size: 14px;
+}
+
+/* ── Network states ── */
+#network.wifi,
+#network.ethernet,
+#network.linked {
+    background: @primary;
+    color: @background;
+}
+
+/* ── Bluetooth states ── */
+#bluetooth.connected {
+    background: @primary;
+    color: @background;
 }
 
 /* ── Battery states ── */
@@ -110,21 +124,24 @@
 #custom-power {
     font-size: 16px;
     padding: 0 8px;
+    background: none;
+    color: @error;
 }
 
-/* Thêm vào ~/.config/waybar/style.css */
-
-/* Thêm vào ~/.config/waybar/style.css */
+#custom-power:hover {
+    background: @surface_container_highest;
+}
 
 #custom-nvim-cheat {
     padding: 0 10px;
-    margin: 2px 0;
-    border-radius: 1rem;
+    margin: 2px 2px;
+    border-radius: 6px;
     letter-spacing: 0.05em;
+    background: @surface_container_highest;
 }
 
 #custom-nvim-cheat:hover {
-    background: @surface_container_highest;
+    background: @outline_variant;
     color: @primary;
 }
 

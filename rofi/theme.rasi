@@ -7,13 +7,13 @@
     font: "JetBrainsMonoNL Nerd Font Mono 12";
 
     /* Backgrounds */
-    bg0:            #0F1219;
-    bg1:            #161D26;
-    bg2:            #1D2632;
+    bg0:            #0d0d0d;
+    bg1:            #141414;
+    bg2:            #1e1e1e;
 
     /* Foregrounds */
     fg0:            #BBC0CA;
-    fg1:            #5c6370;
+    fg1:            #3E4451;
 
     /* Accents */
     accent-color:   #52ACB8;
@@ -21,8 +21,8 @@
     prompt-color:   #60AFEF;
 
     /* Aliases matching ref variable names */
-    background:     #0F1219;
-    background-alt: #161D26;
+    background:     #0d0d0d;
+    background-alt: #141414;
     foreground:     #BBC0CA;
     selected:       #52ACB8;
 
@@ -48,9 +48,9 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
+    border:                      1px solid;
     border-radius:               0px;
-    border-color:                @background;
+    border-color:                #4a5a6a;
     background-color:            @background;
     cursor:                      "default";
 }

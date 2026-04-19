@@ -23,74 +23,89 @@ Di chuyển trong file
   w / b          nhảy word tới / lui
   e              nhảy cuối word
   0 / $          đầu / cuối dòng
-  ^              ký tự đầu tiên
+  ^              ký tự đầu tiên không trắng
   gg / G         đầu / cuối file
   {N}G           nhảy dòng N
-  Ctrl+d / u     nửa trang xuống / lên
-  Ctrl+f / b     nguyên trang xuống / lên
+  <C-d> / <C-u>  nửa trang xuống / lên
+  <C-f> / <C-b>  nguyên trang xuống / lên
   n / N          tìm match tới / lui
   * / #          tìm word dưới cursor tới / lui
   { / }          paragraph trước / sau
-  % / ( ) [ ]    match ngoặc tương ứng
+  %              nhảy tới ngoặc tương ứng
 
 Window + Buffer
   <C-h/j/k/l>    di chuyển giữa windows
-  <C-n>          buffer tiếp theo
-  <C-p>          buffer trước đó
-  <C-w>          đóng buffer
-  <C-b>          toggle file explorer
+  <Tab>          buffer tiếp theo
+  <S-Tab>        buffer trước đó
+  <leader>x      đóng buffer (Snacks)
+  <leader>e      toggle file explorer
   <C-Up/Down>    resize height
   <C-Left/Right> resize width
-  <leader>-      split ngang
-  <leader>|      split dọc
 
 Chế độ
   i / a          insert trước / sau cursor
   o / O          dòng mới dưới / trên
   v / V          visual char / visual line
-  Shift+v        visual line
-  Ctrl+v         visual block (chọn cột)
-  Esc            về normal mode
+  <C-v>          visual block (chọn cột)
+  Esc            về normal mode + xóa highlight
 
 Thao tác cơ bản
   dd             xóa dòng
   yy             copy dòng
+  Y              copy đến cuối dòng
   p / P          paste dưới / trên
   x              xóa ký tự
   r{c}           thay ký tự bằng c
-  u / Ctrl+r     undo / redo
+  u / <C-r>      undo / redo
   .              lặp lại thao tác
   J              nối dòng dưới
+  <A-j> / <A-k>  di chuyển dòng xuống / lên
+  ]<Space>       thêm dòng trống bên dưới
+  [<Space>       thêm dòng trống bên trên
 
 Lưu + thoát
-  <leader>w      lưu
-  <leader>q      thoát
-  <leader>qa     thoát tất cả""",
+  <C-s>          lưu (normal + insert mode)
+  <leader>Q      thoát tất cả (force)""",
     },
     {
         "icon": "󰕷 2",
-        "title": "Keywords",
+        "title": "LSP + Search",
         "content": """\
-━━ Stage 2: Keywords + LSP + Search ━━
+━━ Stage 2: LSP + Search + Picker ━━
 
 LSP (Code Intelligence)
   gd             go to definition
+  gD             go to declaration
   gr             go to references
   gi             go to implementation
+  grt            go to type definition
   K              hover documentation
-  <leader>rn     rename symbol
+  <leader>cr     rename symbol
   <leader>ca     code action
-  <leader>f      format code
-  [d / ]d        error trước / sau
+  <leader>cl     LSP fix all (oxlint / eslint)
+  <leader>cf     format buffer (Conform)
+  <leader>ls     signature help
 
-Tìm + Replace
-  /pattern       tìm trong file
-  <leader>/      tìm trong project (Telescope)
+Diagnostics
+  <leader>cd     hiện diagnostics dòng hiện tại
+  ]d / [d        diagnostic tiếp / trước
+  ]e / [e        error tiếp / trước
+  ]w / [w        warning tiếp / trước
+
+Picker (Snacks)
   <leader>ff     tìm file theo tên
-  <leader>sr     search & replace
-  n / N          match tiếp / trước
+  <leader>/      live grep trong project
+  <leader>fg     live grep
+  <leader>fb     danh sách buffers
+  <leader>fo     recent files
+  <leader>fs     document symbols
+  <leader>fS     workspace symbols
+  <leader>fd     diagnostics picker
+  <leader>gc     git commits
+  <leader>gs     git status
+  <leader>sr     search & replace (grug-far)
 
-Text Objects & Edit
+Text Objects
   diw / daw      xóa word (inner / around)
   ci" / ca"      change trong / kể cả dấu nháy
   ci( / ca(      change trong / kể cả ngoặc
@@ -98,31 +113,11 @@ Text Objects & Edit
   vip            select paragraph
 
 Motion nâng cao
+  s              jump theo label (nvim-jump)
   f{c} / F{c}    nhảy tới / lui ký tự c
   t{c} / T{c}    nhảy trước / sau ký tự c
   ; / ,          lặp f/t theo chiều
-  Ctrl+o / i     jumplist lui / tới
-  H / L          đầu / cuối dòng
-
-Diff + Undo + Git
-  <leader>dd     enable diff
-  <leader>do     disable diff
-  <leader>u1/2/3 undo 1min / 10min / 1hour
-  <leader>/      tìm file / commit trong git
-
-File + Explorer (<C-b>)
-  H              go up directory
-  h              close explorer
-  l              open file/directory
-  .              toggle hidden files
-  R              rename
-  D              delete
-
-Terminal + Tools
-  <leader>ff     find files
-  <leader>/      grep (search all files)
-  gd / gr / K    jump definition / references / hover
-  [d / ]d        next / prev diagnostic
+  <C-o> / <C-i>  jumplist lui / tới
 
 Vim Tips
   *              search word dưới cursor

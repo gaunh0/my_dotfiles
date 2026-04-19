@@ -83,13 +83,10 @@ layout {
     default-column-width { proportion 0.5; }
 
     border {
-        off
-        width 1.5
-         active-color   "#42a5f5"
-        // active-gradient from="#89b4faee" to="#F5c2e7ee" angle=25
-         inactive-color "#8c9199"
-        // urgent-color   "#f2b8b5"
-       // inactive-gradient from="#c6c6c6ee" to="#8a8a8aee" angle=45 relative-to="workspace-view"
+        width 2
+        active-color   "#4a5a6a"
+        inactive-color "#1e1e1e"
+        urgent-color   "#E06B75"
     }
     focus-ring {
        off
