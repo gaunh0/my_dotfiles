@@ -74,3 +74,10 @@ set fish_cursor_visual block
 starship init fish | source
 micromamba shell hook --shell fish | source
 zoxide init fish | source
+
+# pnpm
+set -gx PNPM_HOME "/home/gaunh0/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
